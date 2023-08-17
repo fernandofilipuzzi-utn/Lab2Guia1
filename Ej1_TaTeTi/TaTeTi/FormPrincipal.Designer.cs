@@ -128,7 +128,7 @@ namespace TaTeTiDesktop
             this.btn9.Location = new System.Drawing.Point(231, 187);
             this.btn9.Name = "btn9";
             this.btn9.Size = new System.Drawing.Size(108, 86);
-            this.btn9.TabIndex = 7;
+            this.btn9.TabIndex = 9;
             this.btn9.UseVisualStyleBackColor = true;
             this.btn9.Click += new System.EventHandler(this.btnJugar_Click);
             // 
