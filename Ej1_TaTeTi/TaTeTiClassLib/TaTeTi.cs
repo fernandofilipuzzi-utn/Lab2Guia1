@@ -47,6 +47,44 @@ namespace TaTeTiClassLib
         public bool VerificarJugada(Jugador jugador)
         {
             //verificar filas
+            bool esLinea = false;
+            for (int fila = 0; fila < 3 && esLinea == false; fila++)
+            {
+                esLinea = true;
+                for (int columna = 0; columna < 3 && esLinea == true; columna++)
+                    esLinea &= tablero[fila, columna] == jugador.Marca;
+            }
+
+            //verificar columnas
+            for (int columna = 0; columna < 3 && esLinea == false; columna++)
+            {
+                esLinea = true;
+                for (int fila = 0; fila < 3 && esLinea == true; fila++)
+                    esLinea &= tablero[fila, columna] == jugador.Marca;
+            }
+
+            //verificar diagonal
+            if (esLinea == false)
+            {
+                esLinea = true;
+                for (int n = 0; n < 3 && esLinea == true; n++)
+                {
+                    esLinea &= tablero[n, n] == jugador.Marca;
+                }
+            }
+
+            //verificar diagonal invertida
+            if (esLinea == false)
+            {
+                esLinea = true;
+                for (int n = 0; n < 3 && esLinea == true; n++)
+                {
+                    esLinea &= tablero[n, 2 - n] == jugador.Marca;
+                }
+            }
+
+            /*
+            //verificar filas
             int cnt = 0;
             for (int fila = 0; fila < 3 && cnt<3; fila++)
             {
@@ -86,8 +124,9 @@ namespace TaTeTiClassLib
                     if (tablero[n, 2 - n] == jugador.Marca) cnt++;
                 }
             }
+            */
 
-            return cnt==3;
+            return esLinea;
         }
 
         public bool HaFinalizado()
