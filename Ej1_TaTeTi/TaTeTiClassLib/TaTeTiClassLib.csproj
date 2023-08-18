@@ -48,5 +48,8 @@
   <ItemGroup>
     <None Include="uml\TaTeTi.uml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="uml\TaTeTi.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

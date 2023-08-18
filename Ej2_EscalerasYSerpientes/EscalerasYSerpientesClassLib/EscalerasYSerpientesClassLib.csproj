@@ -49,5 +49,8 @@
   <ItemGroup>
     <None Include="uml\EscalerasYSerpientes.uml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="uml\EscalerasYSerpientes.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
