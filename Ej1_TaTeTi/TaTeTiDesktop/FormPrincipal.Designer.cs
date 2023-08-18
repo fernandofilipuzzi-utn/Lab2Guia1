@@ -199,6 +199,8 @@ namespace TaTeTiDesktop
             this.Controls.Add(this.btnVerHistorial);
             this.Controls.Add(this.plTablero);
             this.Controls.Add(this.btnNuevo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FormPrincipal";
             this.Text = "TaTeTiDesktop";
             this.Load += new System.EventHandler(this.FormPrincipal_Load);

@@ -43,7 +43,7 @@ namespace TaTeTiDesktop
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(38, 338);
+            this.button1.Location = new System.Drawing.Point(53, 338);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -57,8 +57,10 @@ namespace TaTeTiDesktop
             this.ClientSize = new System.Drawing.Size(173, 375);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FormHistorial";
-            this.Text = "FormHistorial";
+            this.Text = "Historial";
             this.ResumeLayout(false);
 
         }
