@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2C214913-45A0-4058-8905-39C49E01BC91}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>EscalerasYSerpientesVista</RootNamespace>
-    <AssemblyName>EscalerasYSerpientesVista</AssemblyName>
+    <RootNamespace>EscalerasYSerpientesDesktop</RootNamespace>
+    <AssemblyName>EscalerasYSerpientesDesktop</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

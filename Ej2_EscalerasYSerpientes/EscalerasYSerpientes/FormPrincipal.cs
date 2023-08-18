@@ -21,22 +21,7 @@ namespace EscalerasYSerpientesDesktop
         EscalerasYSerpientes nuevo;
 
         ArrayList partidas = new ArrayList();
-        public void AgregarPartida(string nombre)
-        {
-            //buscar el registro
-            Partida buscado = null;
-            for (int n = 0; n < partidas.Count && buscado == null; n++)
-            {
-                Partida p = (Partida)partidas[0];
-                if (p.Ganador == nombre)
-                    buscado = p;
-            }
-
-            if (buscado != null)
-                buscado.Ganadas++;
-            else
-                partidas.Add(new Partida(nombre, 1));
-        }
+     
 
         public FormPrincipal()
         {
@@ -82,6 +67,7 @@ namespace EscalerasYSerpientesDesktop
 
                     listBox1.Items.Add(linea);
 
+                    #region pintando las escaleras y los bichos que lo mordieron
                     for (int m = 0; m < jugador.VerCantidadQuienes; m++)
                     {
                         Elemento quien = jugador.VerPorQuien(n);
@@ -91,6 +77,7 @@ namespace EscalerasYSerpientesDesktop
                             listBox1.Items.Add(linea);
                         }
                     }
+                    #endregion
                 }
 
                 listBox1.Items.Add("------");
@@ -99,7 +86,6 @@ namespace EscalerasYSerpientesDesktop
             {
                 MessageBox.Show("Finalizó!");
                
-
                 for (int n = 0; n < nuevo.CantidadJugadores; n++)
                 {
                     Jugador jug = (Jugador)(nuevo.VerJugador(n));
@@ -108,6 +94,20 @@ namespace EscalerasYSerpientesDesktop
                 }
             }
         }
+
+        private void btnListarHistorial_Click(object sender, EventArgs e)
+        {
+            FormHistorial fHistorial = new FormHistorial();
+
+            foreach (Partida p in ListarPartidasOrdenadas())
+                fHistorial.listBox1.Items.Add($"{ p.Ganador}  {p.Ganadas}");
+
+            fHistorial.ShowDialog();
+
+            fHistorial.Dispose();
+        }
+
+        //
 
         public ArrayList ListarPartidasOrdenadas()
         {
@@ -129,16 +129,24 @@ namespace EscalerasYSerpientesDesktop
             return partidas;
         }
 
-        private void btnListarHistorial_Click(object sender, EventArgs e)
+        public void AgregarPartida(string nombre)
         {
-            FormHistorial fHistorial = new FormHistorial();
+            #region buscar el registro primero!
+            Partida buscado = null;
+            for (int n = 0; n < partidas.Count && buscado == null; n++)
+            {
+                Partida p = (Partida)partidas[0];
+                if (p.Ganador == nombre)
+                    buscado = p;
+            }
+            #endregion
 
-            foreach (Partida p in ListarPartidasOrdenadas())
-                fHistorial.listBox1.Items.Add($"{ p.Ganador}  {p.Ganadas}");
-
-            fHistorial.ShowDialog();
-
-            fHistorial.Dispose();
+            #region lo actualizo silo encuentro sono lo agrego 
+            if (buscado != null)
+                buscado.Ganadas++;
+            else
+                partidas.Add(new Partida(nombre, 1));
+            #endregion
         }
     }
 }
