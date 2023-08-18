@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="uml\EscalerasYSerpientes.jpg" />
+    <Content Include="uml\EyS_diagrama_secuencia.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
