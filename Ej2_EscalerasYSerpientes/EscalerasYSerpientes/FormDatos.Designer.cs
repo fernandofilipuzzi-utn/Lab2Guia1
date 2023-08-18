@@ -1,5 +1,5 @@
 ﻿
-namespace EscalerasYSerpientesVista
+namespace EscalerasYSerpientesDesktop
 {
     partial class FormDatos
     {

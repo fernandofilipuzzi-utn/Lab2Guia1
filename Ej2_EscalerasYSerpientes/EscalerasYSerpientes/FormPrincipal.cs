@@ -8,14 +8,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using EscalerasYSerpientesClassLib;
+using System.Collections;
 
-namespace EscalerasYSerpientesVista
+using EscalerasYSerpientesClassLib;
+using EscalerasYSerpientesDesktop.Modelo;
+
+namespace EscalerasYSerpientesDesktop
 { 
     public partial class FormPrincipal : Form
 
     {
         EscalerasYSerpientes nuevo;
+
+        ArrayList partidas = new ArrayList();
+        public void AgregarPartida(string nombre)
+        {
+            //buscar el registro
+            Partida buscado = null;
+            for (int n = 0; n < partidas.Count && buscado == null; n++)
+            {
+                Partida p = (Partida)partidas[0];
+                if (p.Ganador == nombre)
+                    buscado = p;
+            }
+
+            if (buscado != null)
+                buscado.Ganadas++;
+            else
+                partidas.Add(new Partida(nombre, 1));
+        }
 
         public FormPrincipal()
         {
@@ -64,8 +85,11 @@ namespace EscalerasYSerpientesVista
                     for (int m = 0; m < jugador.VerCantidadQuienes; m++)
                     {
                         Elemento quien = jugador.VerPorQuien(n);
-                        linea = $"   Afectador por: {quien.VerDescripcion()} ";
-                        listBox1.Items.Add(linea);
+                        if (quien != null)
+                        {
+                            linea = $"   Afectador por: {quien.VerDescripcion()} ";
+                            listBox1.Items.Add(linea);
+                        }
                     }
                 }
 
@@ -74,7 +98,47 @@ namespace EscalerasYSerpientesVista
             else
             {
                 MessageBox.Show("Finalizó!");
+               
+
+                for (int n = 0; n < nuevo.CantidadJugadores; n++)
+                {
+                    Jugador jug = (Jugador)(nuevo.VerJugador(n));
+                    if (jug.HaLLegado)
+                        AgregarPartida(jug.Nombre);
+                }
             }
+        }
+
+        public ArrayList ListarPartidasOrdenadas()
+        {
+            for (int n = 0; n < partidas.Count - 1; n++)
+            {
+                for (int m = 0; m < partidas.Count - 1; m++)
+                {
+                    Partida p = (Partida)partidas[n];
+                    Partida q = (Partida)partidas[m];
+
+                    if (p.Ganadas < q.Ganadas)
+                    {
+                        object aux = partidas[n];
+                        partidas[n] = partidas[m];
+                        partidas[m] = aux;
+                    }
+                }
+            }
+            return partidas;
+        }
+
+        private void btnListarHistorial_Click(object sender, EventArgs e)
+        {
+            FormHistorial fHistorial = new FormHistorial();
+
+            foreach (Partida p in ListarPartidasOrdenadas())
+                fHistorial.listBox1.Items.Add($"{ p.Ganador}  {p.Ganadas}");
+
+            fHistorial.ShowDialog();
+
+            fHistorial.Dispose();
         }
     }
 }

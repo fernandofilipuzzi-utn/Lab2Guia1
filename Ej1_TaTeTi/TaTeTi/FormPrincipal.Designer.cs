@@ -43,7 +43,7 @@ namespace TaTeTiDesktop
             this.btn8 = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.plTablero = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnVerHistorial = new System.Windows.Forms.Button();
             this.plTablero.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -181,22 +181,22 @@ namespace TaTeTiDesktop
             this.plTablero.Size = new System.Drawing.Size(349, 275);
             this.plTablero.TabIndex = 11;
             // 
-            // button1
+            // btnVerHistorial
             // 
-            this.button1.Location = new System.Drawing.Point(395, 71);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 55);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Ver listado ganadores";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnVerHistorial.Location = new System.Drawing.Point(395, 71);
+            this.btnVerHistorial.Name = "btnVerHistorial";
+            this.btnVerHistorial.Size = new System.Drawing.Size(104, 55);
+            this.btnVerHistorial.TabIndex = 12;
+            this.btnVerHistorial.Text = "Ver Historial";
+            this.btnVerHistorial.UseVisualStyleBackColor = true;
+            this.btnVerHistorial.Click += new System.EventHandler(this.btnListarHistorial_Click);
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(533, 297);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnVerHistorial);
             this.Controls.Add(this.plTablero);
             this.Controls.Add(this.btnNuevo);
             this.Name = "FormPrincipal";
@@ -220,7 +220,7 @@ namespace TaTeTiDesktop
         private System.Windows.Forms.Button btn8;
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Panel plTablero;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnVerHistorial;
     }
 }
 

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33920.266
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EscalerasYSerpientes", "EscalerasYSerpientes\EscalerasYSerpientes.csproj", "{2C214913-45A0-4058-8905-39C49E01BC91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EscalerasYSerpientesDesktop", "EscalerasYSerpientes\EscalerasYSerpientesDesktop.csproj", "{2C214913-45A0-4058-8905-39C49E01BC91}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EscalerasYSerpientesClassLib", "EscalerasYSerpientesClassLib\EscalerasYSerpientesClassLib.csproj", "{49411D09-4AF5-46A6-B7F6-A14E2AEAEB8D}"
 EndProject

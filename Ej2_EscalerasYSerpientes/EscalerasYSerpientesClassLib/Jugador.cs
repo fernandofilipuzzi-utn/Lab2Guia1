@@ -39,12 +39,13 @@ namespace EscalerasYSerpientesClassLib
 
         static Random dado = new Random();
 
-        public ArrayList porQuienesFueAfectado { get; private set; }
+        private ArrayList porQuienesFueAfectado = new ArrayList();
+
         public int CantidadAfectadores
         {
             get {
                 return porQuienesFueAfectado.Count;
-                    }
+            }
         }
 
         public Jugador(string nombre)
@@ -69,9 +70,10 @@ namespace EscalerasYSerpientesClassLib
         {
             Elemento quien = null;
             if (VerCantidadQuienes > 0 && VerCantidadQuienes < porQuienesFueAfectado.Count)
+            {
                 quien = (Elemento)porQuienesFueAfectado[idx];
-
-            return (Elemento)porQuienesFueAfectado[idx];
+            }
+            return quien;
         }
 
         public void AgregarAfectador(Elemento e)

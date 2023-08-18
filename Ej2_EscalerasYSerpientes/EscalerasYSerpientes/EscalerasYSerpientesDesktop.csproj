@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormHistorial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHistorial.Designer.cs">
+      <DependentUpon>FormHistorial.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,8 +64,12 @@
     <Compile Include="FormDatos.Designer.cs">
       <DependentUpon>FormDatos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\Partida.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormHistorial.resx">
+      <DependentUpon>FormHistorial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>

@@ -124,7 +124,7 @@ namespace TaTeTiDesktop
                 partidas.Add(new Partida(nombre, 1));
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnListarHistorial_Click(object sender, EventArgs e)
         {
             FormHistorial fHistorial = new FormHistorial();
 

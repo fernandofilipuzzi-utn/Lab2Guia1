@@ -1,5 +1,5 @@
 ﻿
-namespace EscalerasYSerpientesVista
+namespace EscalerasYSerpientesDesktop
 {
     partial class FormPrincipal
     {
@@ -36,7 +36,7 @@ namespace EscalerasYSerpientesVista
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.btnJugar = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,9 +50,9 @@ namespace EscalerasYSerpientesVista
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Location = new System.Drawing.Point(541, 37);
+            this.btnNuevo.Location = new System.Drawing.Point(541, 24);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(90, 30);
+            this.btnNuevo.Size = new System.Drawing.Size(90, 55);
             this.btnNuevo.TabIndex = 9;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = true;
@@ -79,29 +79,30 @@ namespace EscalerasYSerpientesVista
             // btnJugar
             // 
             this.btnJugar.Enabled = false;
-            this.btnJugar.Location = new System.Drawing.Point(541, 73);
+            this.btnJugar.Location = new System.Drawing.Point(541, 85);
             this.btnJugar.Name = "btnJugar";
-            this.btnJugar.Size = new System.Drawing.Size(90, 30);
+            this.btnJugar.Size = new System.Drawing.Size(90, 50);
             this.btnJugar.TabIndex = 11;
             this.btnJugar.Text = "Jugar";
             this.btnJugar.UseVisualStyleBackColor = true;
             this.btnJugar.Click += new System.EventHandler(this.btnJugar_Click);
             // 
-            // button2
+            // button1
             // 
-            this.button2.Location = new System.Drawing.Point(541, 143);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 30);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Listar Ranking";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button1.Location = new System.Drawing.Point(541, 141);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 50);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Listar Historial";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnListarHistorial_Click);
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(654, 440);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnJugar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnNuevo);
@@ -118,7 +119,7 @@ namespace EscalerasYSerpientesVista
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button btnJugar;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
     }
 }
 

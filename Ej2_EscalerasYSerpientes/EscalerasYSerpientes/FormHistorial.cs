@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace EscalerasYSerpientesDesktop
 {
-    public partial class FormDatos : Form
+    public partial class FormHistorial : Form
     {
-        public FormDatos()
+        public FormHistorial()
         {
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnAceptar_Click(object sender, EventArgs e)
         {
 
         }
