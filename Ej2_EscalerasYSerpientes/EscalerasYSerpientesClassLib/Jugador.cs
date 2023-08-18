@@ -19,7 +19,8 @@ namespace EscalerasYSerpientesClassLib
             {
                 return posicion;
             }
-            set {
+            set 
+            {
                 if(value<100)
                     posicion = value;
                 else
@@ -27,8 +28,17 @@ namespace EscalerasYSerpientesClassLib
             }
         }
 
-        public int PosicionAnterior { get; private set; }
-        public int Avance { get; private set; }
+        public int PosicionAnterior 
+        {
+            get; 
+            private set; 
+        }
+
+        public int Avance 
+        {
+            get; 
+            private set; 
+        }
         public bool HaLLegado
         {
             get 
@@ -43,7 +53,8 @@ namespace EscalerasYSerpientesClassLib
 
         public int CantidadAfectadores
         {
-            get {
+            get
+            {
                 return porQuienesFueAfectado.Count;
             }
         }
@@ -65,11 +76,17 @@ namespace EscalerasYSerpientesClassLib
         }
 
         public int VerCantidadQuienes 
-        { get { return porQuienesFueAfectado.Count; } }
+        { 
+            get 
+            { 
+                return porQuienesFueAfectado.Count; 
+            } 
+        }
+
         public Elemento VerPorQuien(int idx)
         {
             Elemento quien = null;
-            if (VerCantidadQuienes > 0 && VerCantidadQuienes < porQuienesFueAfectado.Count)
+            if (idx >= 0 && idx < porQuienesFueAfectado.Count)
             {
                 quien = (Elemento)porQuienesFueAfectado[idx];
             }

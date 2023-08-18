@@ -47,15 +47,24 @@ namespace EscalerasYSerpientesClassLib
 
         public Jugador VerJugador(int idx)
         {
-            return (Jugador)jugadores[idx];
+            Jugador jug = null;
+            if (idx >= 0 && idx < CantidadJugadores)
+            {
+                jug=(Jugador)jugadores[idx];
+            }
+            return jug;
         }
+
         public Elemento VerElemento(int idx)
         {
-            return (Elemento)elementos[idx];
+            Elemento elem = null;
+            if (idx >= 0 && idx < CantidadElementos)
+            {
+                elem = (Elemento)elementos[idx];
+            }
+            return elem;
         }
-
-
-      
+              
         public bool HaFinalizado()
         {
             bool haFinalizado=false;

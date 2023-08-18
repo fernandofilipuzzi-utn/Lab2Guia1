@@ -44,11 +44,12 @@ namespace EscalerasYSerpientesDesktop
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(186, 20);
             this.tbNombre.TabIndex = 0;
+            this.tbNombre.TextChanged += new System.EventHandler(this.tbNombre_TextChanged);
             // 
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(194, 111);
+            this.button1.Location = new System.Drawing.Point(203, 110);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -64,7 +65,7 @@ namespace EscalerasYSerpientesDesktop
             this.button2.TabIndex = 2;
             this.button2.Text = "Aceptar";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // label1
             // 
@@ -77,7 +78,7 @@ namespace EscalerasYSerpientesDesktop
             // 
             // nudCantidad
             // 
-            this.nudCantidad.Location = new System.Drawing.Point(143, 51);
+            this.nudCantidad.Location = new System.Drawing.Point(141, 51);
             this.nudCantidad.Maximum = new decimal(new int[] {
             10,
             0,
@@ -86,6 +87,7 @@ namespace EscalerasYSerpientesDesktop
             this.nudCantidad.Name = "nudCantidad";
             this.nudCantidad.Size = new System.Drawing.Size(120, 20);
             this.nudCantidad.TabIndex = 4;
+            this.nudCantidad.ValueChanged += new System.EventHandler(this.nudCantidad_ValueChanged);
             // 
             // label2
             // 

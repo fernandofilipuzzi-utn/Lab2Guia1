@@ -22,7 +22,6 @@ namespace EscalerasYSerpientesDesktop
 
         ArrayList partidas = new ArrayList();
      
-
         public FormPrincipal()
         {
             InitializeComponent();
@@ -34,6 +33,8 @@ namespace EscalerasYSerpientesDesktop
 
             if (fDato.ShowDialog() == DialogResult.OK)
             {
+                listBox1.Items.Clear();
+
                 string jugador = fDato.tbNombre.Text;
                 int cantidad = Convert.ToInt32( fDato.nudCantidad.Value);
 
@@ -70,12 +71,9 @@ namespace EscalerasYSerpientesDesktop
                     #region pintando las escaleras y los bichos que lo mordieron
                     for (int m = 0; m < jugador.VerCantidadQuienes; m++)
                     {
-                        Elemento quien = jugador.VerPorQuien(n);
-                        if (quien != null)
-                        {
-                            linea = $"   Afectador por: {quien.VerDescripcion()} ";
-                            listBox1.Items.Add(linea);
-                        }
+                        Elemento quien = jugador.VerPorQuien(m);
+                        linea = $"   Afectador por: {quien.VerDescripcion()} ";
+                        listBox1.Items.Add(linea);
                     }
                     #endregion
                 }
