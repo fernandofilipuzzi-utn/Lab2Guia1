@@ -1,4 +1,6 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ViewSwitcher.ascx.cs" Inherits="TaTeTiWeb.ViewSwitcher" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ViewSwitcher.ascx.cs" 
+                Inherits="TaTeTiWeb.ViewSwitcher" %>
 <div id="viewSwitcher">
-    <%: CurrentView %> view | <a href="<%: SwitchUrl %>" data-ajax="false">Switch to <%: AlternateView %></a>
+    <%: CurrentView %> view | <a href="<%: SwitchUrl %>" 
+        data-ajax="false">Switch to <%: AlternateView %></a>
 </div>

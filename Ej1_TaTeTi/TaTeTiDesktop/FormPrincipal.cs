@@ -17,13 +17,16 @@ namespace TaTeTiDesktop
     public partial class FormPrincipal : Form
     {
         TaTeTi nuevo;
+        ArrayList partidas = new ArrayList();
+
+        Button[,] btnMatrix = new Button[3, 3];
+
 
         public FormPrincipal()
         {
             InitializeComponent();
         }
-
-        Button[,] btnMatrix = new Button[3, 3];
+                
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
             btnMatrix[0, 0] = btn1;
@@ -106,24 +109,6 @@ namespace TaTeTiDesktop
             }
         }
 
-        ArrayList partidas = new ArrayList();
-        public void AgregarPartida(string nombre)
-        {
-            //buscar el registro
-            Partida buscado = null;
-            for (int n = 0; n < partidas.Count && buscado==null; n++)
-            {
-                Partida p = (Partida)partidas[n];
-                if (p.Ganador == nombre)
-                    buscado = p;
-            }
-
-            if (buscado != null)
-                buscado.Ganadas++;
-            else
-                partidas.Add(new Partida(nombre, 1));
-        }
-
         private void btnListarHistorial_Click(object sender, EventArgs e)
         {
             FormHistorial fHistorial = new FormHistorial();
@@ -134,6 +119,23 @@ namespace TaTeTiDesktop
             fHistorial.ShowDialog();
 
             fHistorial.Dispose();
+        }
+                
+        public void AgregarPartida(string nombre)
+        {
+            //buscar el registro
+            Partida buscado = null;
+            for (int n = 0; n < partidas.Count && buscado == null; n++)
+            {
+                Partida p = (Partida)partidas[n];
+                if (p.Ganador == nombre)
+                    buscado = p;
+            }
+
+            if (buscado != null)
+                buscado.Ganadas++;
+            else
+                partidas.Add(new Partida(nombre, 1));
         }
 
         public ArrayList ListarPartidasOrdenadas()

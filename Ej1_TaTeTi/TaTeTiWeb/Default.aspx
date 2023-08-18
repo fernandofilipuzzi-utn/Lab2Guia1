@@ -3,8 +3,6 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-
-
-    hola mundo!
+    Bienvenido!
 
 </asp:Content>

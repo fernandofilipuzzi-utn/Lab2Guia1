@@ -4,27 +4,27 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 using TaTeTiClassLib;
+using TaTeTiWeb.Modelo;
 
 namespace TaTeTiWeb
 {
     public partial class Tablero : System.Web.UI.Page
     {       
         Button[,] btnMatrix = new Button[3, 3];
-        TaTeTi nuevo;
-
+   
         protected void Page_Init(object sender, EventArgs e)
         {
-            nuevo = Session["nuevor"] as TaTeTi;
-            if (nuevo == null)
-            {
-                nuevo = new TaTeTi("Juan");
-                Session["nuevor"] = nuevo;
+            Sistema sistema = Session["sistema"] as Sistema;
 
-                plTablero.Enabled = true;
+            if (sistema == null)
+            {
+                sistema = new Sistema();
+                Session["sistema"] = sistema;
             }
 
-            
+            #region iniciando matrix de botones                        
             btnMatrix[0, 0] = btn1;
             btnMatrix[0, 1] = btn2;
             btnMatrix[0, 2] = btn3;
@@ -34,36 +34,54 @@ namespace TaTeTiWeb
             btnMatrix[2, 0] = btn7;
             btnMatrix[2, 1] = btn8;
             btnMatrix[2, 2] = btn9;
+            #endregion
+
+            if (sistema.Juego == null || sistema.Juego.HaFinalizado() == true)
+                Response.Redirect("./NuevoJuego.aspx");
+
+            plTablero.Enabled = sistema.Juego.HaFinalizado() == false;
         }
 
         protected void Page_Load(object sender, EventArgs e)
-        { 
+        {          
         }
 
-        protected void btn_Click(object sender, EventArgs e)
+        protected void btnNuevo_Click(object sender, EventArgs e)
         {
+            Response.Redirect("./NuevoJuego.aspx");
+        }
+                
+        protected void btnJugar_Click(object sender, EventArgs e)
+        {
+            Sistema sistema = Session["sistema"] as Sistema;
+
             int fila, columna;
             ConvertButtonToMap(sender as Button, out fila, out columna);
 
-            if (nuevo.Jugador1.Jugar(fila, columna) == true)
+            if (sistema.Juego.Jugador1.Jugar(fila, columna) == true)
             {
-                btnMatrix[nuevo.Jugador1.UltimaFila, nuevo.Jugador1.UltimaColumna].Style["background-image"] = "url('./Resources/O.png')";
+                btnMatrix[sistema.Juego.Jugador1.UltimaFila,
+                          sistema.Juego.Jugador1.UltimaColumna].Style["background-image"] = "url('./Resources/O.png')";
 
-                while (nuevo.Jugador2.Jugar() == false) ;
-                btnMatrix[nuevo.Jugador2.UltimaFila, nuevo.Jugador2.UltimaColumna].Style["background-image"] = "url('./Resources/X.png')";
+                while (sistema.Juego.Jugador2.Jugar() == false) ;
+                btnMatrix[sistema.Juego.Jugador2.UltimaFila,
+                           sistema.Juego.Jugador2.UltimaColumna].Style["background-image"] = "url('./Resources/X.png')";
             }
             else
             {
-                //Text = "vuelva!";
+                string script = $"alert('Vuelva a marcar!');";
+                ClientScript.RegisterStartupScript(this.GetType(), "MensajeEmergente", script, true);
             }
 
-            if (nuevo.HaFinalizado() == true)
+            if (sistema.Juego.HaFinalizado() == true)
             {
-                Jugador g = nuevo.HayGanador();
+                Jugador g = sistema.Juego.HayGanador();
                 if (g != null)
                 {
                     string script = $"alert('{g.Nombre}');";
                     ClientScript.RegisterStartupScript(this.GetType(), "MensajeEmergente", script, true);
+
+                    sistema.AgregarPartida(g.Nombre);
                 }
                 else
                 {
@@ -71,10 +89,15 @@ namespace TaTeTiWeb
                     ClientScript.RegisterStartupScript(this.GetType(), "MensajeEmergente", script, true);
                 }
 
-                plTablero.Enabled = true;
+                plTablero.Enabled = false;
             }
         }
 
+        protected void btnVerHistorial_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("./Historial.aspx");
+        }
+        
         //
 
         private void ConvertButtonToMap(Button sender, out int renglon, out int columna)
