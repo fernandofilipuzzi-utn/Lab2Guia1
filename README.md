@@ -1,7 +1,5 @@
 # Laboratorio 2 Guía 1 - Interacción entre objetos (sin herencia)
 
-
-**El diagrama UML:**<br/>
 <b>Ejercicio 1: TaTeTi</b><br/>
 ![alt text](https://github.com/fernandofilipuzzi-utn/Lab2Guia1/blob/main/Ej1_TaTeTi/TaTeTiClassLib/uml/TaTeTi.jpg?raw=true)
 <br/>
