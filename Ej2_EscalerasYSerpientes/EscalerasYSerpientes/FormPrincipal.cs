@@ -72,7 +72,7 @@ namespace EscalerasYSerpientesDesktop
                     for (int m = 0; m < jugador.VerCantidadQuienes; m++)
                     {
                         Elemento quien = jugador.VerPorQuien(m);
-                        linea = $"   Afectador por: {quien.VerDescripcion()} ";
+                        linea = $"   Afectado por: {quien.VerDescripcion()} ";
                         listBox1.Items.Add(linea);
                     }
                     #endregion
@@ -133,7 +133,7 @@ namespace EscalerasYSerpientesDesktop
             Partida buscado = null;
             for (int n = 0; n < partidas.Count && buscado == null; n++)
             {
-                Partida p = (Partida)partidas[0];
+                Partida p = (Partida)partidas[n];
                 if (p.Ganador == nombre)
                     buscado = p;
             }
