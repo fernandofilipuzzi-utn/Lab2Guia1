@@ -29,22 +29,22 @@ namespace EscalerasYSerpientesDesktop
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lbResultados = new System.Windows.Forms.ListBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox1
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(2, 12);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(718, 342);
-            this.listBox1.TabIndex = 1;
+            this.lbResultados.FormattingEnabled = true;
+            this.lbResultados.Location = new System.Drawing.Point(2, 12);
+            this.lbResultados.Name = "listBox1";
+            this.lbResultados.Size = new System.Drawing.Size(167, 329);
+            this.lbResultados.TabIndex = 1;
             // 
             // btnAceptar
             // 
             this.btnAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnAceptar.Location = new System.Drawing.Point(305, 360);
+            this.btnAceptar.Location = new System.Drawing.Point(48, 347);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(75, 23);
             this.btnAceptar.TabIndex = 2;
@@ -56,18 +56,20 @@ namespace EscalerasYSerpientesDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(723, 393);
+            this.ClientSize = new System.Drawing.Size(174, 373);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lbResultados);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FormHistorial";
-            this.Text = "FormHistoria";
+            this.Text = "Historico de Jugadas";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        public System.Windows.Forms.ListBox listBox1;
+        public System.Windows.Forms.ListBox lbResultados;
         private System.Windows.Forms.Button btnAceptar;
     }
 }

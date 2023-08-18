@@ -106,6 +106,8 @@ namespace EscalerasYSerpientesDesktop
             this.Controls.Add(this.btnJugar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnNuevo);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FormPrincipal";
             this.Text = "Escaleras y Serpientes";
             this.groupBox1.ResumeLayout(false);

@@ -44,7 +44,9 @@ namespace EscalerasYSerpientesDesktop
                 {
                     Elemento elemento = nuevo.VerElemento(m);
                     string linea = $"   {elemento.VerDescripcion()} ";
+
                     listBox1.Items.Add(linea);
+                    listBox1.SelectedIndex = listBox1.Items.Count - 1;
                 }
 
                 listBox1.Items.Add("---");
@@ -67,13 +69,16 @@ namespace EscalerasYSerpientesDesktop
                                     $"a la posición {jugador.PosicionActual} ({jugador.Avance})";
 
                     listBox1.Items.Add(linea);
+                    listBox1.SelectedIndex = listBox1.Items.Count - 1;
 
                     #region pintando las escaleras y los bichos que lo mordieron
                     for (int m = 0; m < jugador.VerCantidadQuienes; m++)
                     {
                         Elemento quien = jugador.VerPorQuien(m);
                         linea = $"   Afectado por: {quien.VerDescripcion()} ";
+
                         listBox1.Items.Add(linea);
+                        listBox1.SelectedIndex = listBox1.Items.Count - 1;
                     }
                     #endregion
                 }
@@ -98,7 +103,7 @@ namespace EscalerasYSerpientesDesktop
             FormHistorial fHistorial = new FormHistorial();
 
             foreach (Partida p in ListarPartidasOrdenadas())
-                fHistorial.listBox1.Items.Add($"{ p.Ganador}  {p.Ganadas}");
+                fHistorial.lbResultados.Items.Add($"{ p.Ganador}  {p.Ganadas}");
 
             fHistorial.ShowDialog();
 

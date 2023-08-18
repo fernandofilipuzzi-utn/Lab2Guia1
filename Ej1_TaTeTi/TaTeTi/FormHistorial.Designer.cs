@@ -38,12 +38,12 @@ namespace TaTeTiDesktop
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(2, 3);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(718, 342);
+            this.listBox1.Size = new System.Drawing.Size(167, 329);
             this.listBox1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(338, 351);
+            this.button1.Location = new System.Drawing.Point(38, 338);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -54,7 +54,7 @@ namespace TaTeTiDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 375);
+            this.ClientSize = new System.Drawing.Size(173, 375);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listBox1);
             this.Name = "FormHistorial";
