@@ -4,10 +4,26 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <asp:ListView ID="ltwHistorial" runat="server">
+         <LayoutTemplate>            
+            <table>
+                <tr>
+                    <th>Jugador</th>
+                    <th>Partidas</th>
+
+                    <asp:PlaceHolder runat="server" ID="itemPlaceholder" />
+                </tr>
+            </table>
+        </LayoutTemplate> 
         <ItemTemplate>
-            <asp:Label Text='<%#Eval("Ganador")%>' runat="server"/>
-            <asp:Label Text='<%#Eval("Ganadas")%>' runat="server"/>
+            <tr>
+                <td>    
+                        <%#Eval("Ganador")%>
+                </td>
+                <td>
+                        <%#Eval("Ganadas")%>
+                </td>
+           </tr>
         </ItemTemplate>
     </asp:ListView>
-
+        
 </asp:Content>

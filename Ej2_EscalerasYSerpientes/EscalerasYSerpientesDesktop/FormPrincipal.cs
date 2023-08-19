@@ -116,7 +116,7 @@ namespace EscalerasYSerpientesDesktop
         {
             for (int n = 0; n < partidas.Count - 1; n++)
             {
-                for (int m = 0; m < partidas.Count - 1; m++)
+                for (int m = n+1; m < partidas.Count; m++)
                 {
                     Partida p = (Partida)partidas[n];
                     Partida q = (Partida)partidas[m];
