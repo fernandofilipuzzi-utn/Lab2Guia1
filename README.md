@@ -13,6 +13,7 @@ http://www.fernandofilipuzziutn.somee.com/Tablero
 
 <br/>
 **Ejercicio 2: Escaleras y serpientes** 
+
 <br/> 
 ![alt text](https://github.com/fernandofilipuzzi-utn/Lab2Guia1/blob/main/Ej2_EscalerasYSerpientes/EscalerasYSerpientesClassLib/uml/EscalerasYSerpientes.jpg?raw=true)
 <br/>
