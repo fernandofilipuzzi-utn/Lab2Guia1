@@ -1,6 +1,12 @@
 # Laboratorio 2 Guía 1 - Interacción entre objetos (sin herencia)
 
-**Ejercicio 1: TaTeTi**<br/>
+
+
+**Ejercicio 1: TaTeTi**
+<br/>
+Para pruebas online:
+http://www.fernandofilipuzziutn.somee.com/Tablero
+<br/>
 ![alt text](https://github.com/fernandofilipuzzi-utn/Lab2Guia1/blob/main/Ej1_TaTeTi/TaTeTiClassLib/uml/TaTeTi.jpg?raw=true)
 <br/>
 ![alt text](https://github.com/fernandofilipuzzi-utn/Lab2Guia1/blob/main/Ej1_TaTeTi/TaTeTiClassLib/uml/TaTeTi_diagrama_secuencia.jpg?raw=true)
