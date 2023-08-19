@@ -2,7 +2,7 @@
 
 
 
-**Ejercicio 1: TaTeTi**
+<b>Ejercicio 1: TaTeTi</b>
 <br/>
 Para pruebas online:
 http://www.fernandofilipuzziutn.somee.com/Tablero
@@ -12,7 +12,7 @@ http://www.fernandofilipuzziutn.somee.com/Tablero
 ![alt text](https://github.com/fernandofilipuzzi-utn/Lab2Guia1/blob/main/Ej1_TaTeTi/TaTeTiClassLib/uml/TaTeTi_diagrama_secuencia.jpg?raw=true)
 
 <br/>
-**Ejercicio 2: Escaleras y serpientes** 
+<b>Ejercicio 2: Escaleras y serpientes</b>
 
 <br/> 
 ![alt text](https://github.com/fernandofilipuzzi-utn/Lab2Guia1/blob/main/Ej2_EscalerasYSerpientes/EscalerasYSerpientesClassLib/uml/EscalerasYSerpientes.jpg?raw=true)
