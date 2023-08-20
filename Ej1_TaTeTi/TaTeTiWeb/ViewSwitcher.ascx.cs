@@ -38,6 +38,8 @@ namespace TaTeTiWeb
             var url = GetRouteUrl(switchViewRouteName, new { view = AlternateView, __FriendlyUrls_SwitchViews = true });
             url += "?ReturnUrl=" + HttpUtility.UrlEncode(Request.RawUrl);
             SwitchUrl = url;
+
+            Response.Redirect(url);
         }
     }
 }
