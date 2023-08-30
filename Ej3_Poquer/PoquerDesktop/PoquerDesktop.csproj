@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="doc\formulario.jpg" />
     <Content Include="Resources\0back.png" />
     <Content Include="Resources\C10.png" />
     <Content Include="Resources\C11J.png" />
