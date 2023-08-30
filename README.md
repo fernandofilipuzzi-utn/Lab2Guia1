@@ -28,4 +28,4 @@
 <br/>
 <img src="https://github.com/fernandofilipuzzi-utn/Lab2Guia1/blob/main/Ej3_Poquer/PoquerClassLib/uml/poquer.jpg"/>
 <br/>
-<img src="https://github.com/fernandofilipuzzi-utn/Lab2Guia1/blob/main/Ej3_Poquer/PoquerDesktop/doc/formulario.jpgg"/>
+<img src="https://github.com/fernandofilipuzzi-utn/Lab2Guia1/blob/main/Ej3_Poquer/PoquerDesktop/doc/formulario.jpg"/>
