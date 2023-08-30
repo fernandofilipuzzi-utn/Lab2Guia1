@@ -40,31 +40,53 @@ namespace PoquerClassLib
         {
             if (Ronda == 0)
             {
+                #region iniciando el juego
                 for (int n = 0; n < CantidadJugadores; n++)
                 {
                     Jugador jug = (Jugador)jugadores[n];
                     jug.RecibirCarta(mazo.Extraer());
                     jug.RecibirCarta(mazo.Extraer());
                 }
-                Ronda = 1; //pasa a la siguiente
+                Ronda = 1; 
+                
+                //siguen las apuestas de la ronda 1
+
+                #endregion
             }
             else if(Ronda==1)
             {
+                #region terminada la ronda 1 de apuestas
                 CantCartasComunitarias = 3;
                 for (int n = 0; n < CantCartasComunitarias; n++)
                 {
                     cartas[n] = mazo.Extraer();
                 }
                 Ronda = 2;
+
+                //sigue la apuesta de la ronda 2
+
+                #endregion
             }
             else if (Ronda == 2)
             {
+                #region terminada la ronda 2 de apuestas
                 cartas[CantCartasComunitarias++] = mazo.Extraer();
                 Ronda=3;
+
+                //sigue la apuesta de la ronda 3
+
+                #endregion
             }
             else if (Ronda == 3)
             {
+                #region terminada la ronda 3 de apuestas
+
                 cartas[CantCartasComunitarias++] = mazo.Extraer();
+
+                //sigue ver las manos
+                Ronda = 4;
+
+                #endregion
             }
         }
 
@@ -73,10 +95,19 @@ namespace PoquerClassLib
             if (FinDelJugo==false)
             {
                 #region apuestan los jugadores
-                ((Jugador)jugadores[0]).Jugar(accion, fichas);
-                for (int n = 1; n < CantidadJugadores; n++)
+                
+                for (int n = 0; n < CantidadJugadores; n++)
                 {
-                    ((Jugador)jugadores[n]).Jugar();
+                    Jugador jug = (Jugador)jugadores[n];
+
+                    if (n == 0)//humano
+                    {
+                        jug.Jugar(accion, fichas);
+                    }
+                    else //jugadores virtuales
+                    {
+                        jug.Jugar();
+                    }
                 }
                 #endregion
 
@@ -85,8 +116,20 @@ namespace PoquerClassLib
                 if (CompletoRonda == true)
                 {
                     VerificarFinDelJuego();
-                    if(FinDelJugo==false)
+                    if (FinDelJugo == false)
                         IniciarRondaApuestas();
+                }
+                else
+                {
+                    //sino completaron, marcar a quien volver a pedirles completar
+                    int maxima = MayorApuesta();
+                    for (int n = 0; n < CantidadJugadores; n++)
+                    {
+                        Jugador jug = (Jugador)jugadores[n];
+                        jug.CompletoRonda = jug.Accion == Jugador.TipoAccion.Pasar ||
+                                                    (jug.Accion == Jugador.TipoAccion.LLamar &&
+                                                    jug.VerApuestaRonda() != maxima);
+                    }
                 }
                 #endregion
             }
@@ -149,12 +192,24 @@ namespace PoquerClassLib
 
         public Carta VerCartaComunicaria(int idx)
         {
-            return (Carta)(cartas[idx]);
+            Carta carta = null;
+
+            if (idx < CantCartasComunitarias)
+            {
+                carta = (Carta)(cartas[idx]);
+            }
+
+            return carta;
         }
 
         public Jugador VerJugador(int nro)
         {
-            return (Jugador)(jugadores[nro]);
+            Jugador jug = null;
+            
+            if(nro<CantidadJugadores)
+                jug=(Jugador)(jugadores[nro]);
+
+            return jug;
         }
 
         public int MayorApuesta()

@@ -215,6 +215,7 @@ namespace PoquerDesktop
             this.pbxCarta1J3.Size = new System.Drawing.Size(72, 108);
             this.pbxCarta1J3.TabIndex = 29;
             this.pbxCarta1J3.TabStop = false;
+            this.pbxCarta1J3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbxCartaJ3_MouseMove);
             // 
             // pbxCarta2J3
             // 
@@ -223,6 +224,7 @@ namespace PoquerDesktop
             this.pbxCarta2J3.Size = new System.Drawing.Size(72, 108);
             this.pbxCarta2J3.TabIndex = 28;
             this.pbxCarta2J3.TabStop = false;
+            this.pbxCarta2J3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbxCartaJ3_MouseMove);
             // 
             // pbxCarta2J2
             // 
@@ -231,6 +233,7 @@ namespace PoquerDesktop
             this.pbxCarta2J2.Size = new System.Drawing.Size(72, 108);
             this.pbxCarta2J2.TabIndex = 27;
             this.pbxCarta2J2.TabStop = false;
+            this.pbxCarta2J2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbxCartaJ2_MouseMove);
             // 
             // pbxCarta1J2
             // 
@@ -239,6 +242,7 @@ namespace PoquerDesktop
             this.pbxCarta1J2.Size = new System.Drawing.Size(72, 108);
             this.pbxCarta1J2.TabIndex = 26;
             this.pbxCarta1J2.TabStop = false;
+            this.pbxCarta1J2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbxCartaJ2_MouseMove);
             // 
             // pbxCarta2J1
             // 

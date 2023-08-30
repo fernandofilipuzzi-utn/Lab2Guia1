@@ -168,7 +168,7 @@ namespace PoquerDesktop
                         int numero = Mazo.Reverso;
 
                         #region pinta las cartas solo del jugador humano
-                        if (n == 0)
+                        if (n == 0 || nuevo.FinDelJugo==true)
                         {
                             Carta carta = jug.VerCarta(m);
                             numero = carta.Numero;
@@ -189,42 +189,57 @@ namespace PoquerDesktop
 
         private void btnJugar_Click(object sender, EventArgs e)
         {
-            #region parseando acción
-            Jugador.TipoAccion accion=Jugador.TipoAccion.Nada;
-            int apuesta = 0;
-
-            if (rbLLamar.Checked)
+            if (rbLLamar.Checked || rbPasar.Checked || rbRetirarYSeguir.Checked || rbRetirarse.Checked)
             {
-                accion = Jugador.TipoAccion.LLamar;
-                apuesta = Convert.ToInt32(tbrApuestaJ3.Value);
-            }
-            else if(rbPasar.Checked)
-            {
-                accion = Jugador.TipoAccion.Pasar;
-            }
-            else if(rbRetirarYSeguir.Checked)
-            {
-                accion = Jugador.TipoAccion.RetirarseYSeguir;
-            }
-            else if (rbRetirarse.Checked)
-            {
-                accion = Jugador.TipoAccion.Retirarse;
-            }
-            #endregion
+                #region parseando acción
+                Jugador.TipoAccion accion = Jugador.TipoAccion.Nada;
+                int apuesta = 0;
 
-            nuevo.Jugar(accion, apuesta);
+                if (rbLLamar.Checked)
+                {
+                    accion = Jugador.TipoAccion.LLamar;
+                    apuesta = Convert.ToInt32(tbrApuestaJ3.Value);
+                }
+                else if (rbPasar.Checked)
+                {
+                    accion = Jugador.TipoAccion.Pasar;
+                }
+                else if (rbRetirarYSeguir.Checked)
+                {
+                    accion = Jugador.TipoAccion.RetirarseYSeguir;
+                }
+                else if (rbRetirarse.Checked)
+                {
+                    accion = Jugador.TipoAccion.Retirarse;
+                }
+                #endregion
 
-            if (nuevo.CompletoRonda == false)
-                MessageBox.Show("complete la apuesta");
+                nuevo.Jugar(accion, apuesta);
 
-            if (nuevo.FinDelJugo == true)
-            {
-                btnJugar.Enabled = false;
-                MessageBox.Show("fin!");
+                if (nuevo.CompletoRonda == false)
+                    MessageBox.Show("complete la apuesta");
+
+                if (nuevo.FinDelJugo == true)
+                {
+                    btnJugar.Enabled = false;
+                    MessageBox.Show("fin!");
+                }
+
+                PintarJugadores();
+                PintarMesa();
+
+                #region limpiando controles
+                tbrApuestaJ3.Value = 0;
+                rbLLamar.Checked = false;
+                rbPasar.Checked = false;
+                rbRetirarYSeguir.Checked = false;
+                rbRetirarse.Checked = false;
+                #endregion
             }
-
-            PintarJugadores();
-            PintarMesa();
+            else
+            {
+                MessageBox.Show("Elija una opción!");
+            }
         }
 
         private void tbrApuestaJ3_ValueChanged(object sender, EventArgs e)
@@ -251,14 +266,50 @@ namespace PoquerDesktop
 
         private void pbxCartaJ1_MouseMove(object sender, MouseEventArgs e)
         {
-            int numero = -1;
-            var img = sender as PictureBox;
-            if (img == pbxCarta1J1) numero = 0;
-            else if (img == pbxCarta2J1) numero = 1;
+            Jugador jug = nuevo.VerJugador(0);
+            if (jug != null)
+            {
+                int numero = -1;
+                var img = sender as PictureBox;
+                if (img == pbxCarta1J1) numero = 0;
+                else if (img == pbxCarta2J1) numero = 1;
 
-            Carta carta = nuevo.VerJugador(0).VerCarta(numero);
-            if (carta != null && numero>= 0)
-                toolTip1.SetToolTip(img, carta.ToString());
+                Carta carta = jug.VerCarta(numero);
+                if (carta != null && numero >= 0)
+                    toolTip1.SetToolTip(img, carta.ToString());
+            }
+        }
+
+        private void pbxCartaJ2_MouseMove(object sender, MouseEventArgs e)
+        {
+            Jugador jug = nuevo.VerJugador(1);
+            if (jug != null)
+            {
+                int numero = -1;
+                var img = sender as PictureBox;
+                if (img == pbxCarta1J2) numero = 0;
+                else if (img == pbxCarta2J2) numero = 1;
+
+                Carta carta = jug.VerCarta(numero);
+                if (carta != null && numero >= 0)
+                    toolTip1.SetToolTip(img, carta.ToString());
+            }
+        }
+
+        private void pbxCartaJ3_MouseMove(object sender, MouseEventArgs e)
+        {
+            Jugador jug = nuevo.VerJugador(2);
+            if (jug != null)
+            {
+                int numero = -1;
+                var img = sender as PictureBox;
+                if (img == pbxCarta1J3) numero = 0;
+                else if (img == pbxCarta2J3) numero = 1;
+
+                Carta carta = jug.VerCarta(numero);
+                if (carta != null && numero >= 0)
+                    toolTip1.SetToolTip(img, carta.ToString());
+            }
         }
     }
 }

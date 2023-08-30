@@ -28,7 +28,7 @@ namespace PoquerClassLib
 
         static Random azar = new Random();
 
-        
+        public bool CompletoRonda { get; set; }
 
         public Jugador(Poquer partida, string nombre) 
         {
@@ -39,43 +39,50 @@ namespace PoquerClassLib
 
         public void Jugar(TipoAccion accion, int fichas)
         {
-            Accion = accion;
-
-            if( accion== TipoAccion.LLamar) 
+            if (Accion < TipoAccion.RetirarseYSeguir)
             {
-                apuestas[partida.Ronda-1]+= fichas;            
+                Accion = accion;
+
+                if (Accion == TipoAccion.LLamar)
+                {
+                    apuestas[partida.Ronda - 1] += fichas;
+                }
             }
         }
 
-
         public void Jugar()
         {
-            int mayor = partida.MayorApuesta();
-
-            int tipoAccionInt=azar.Next(1, 5);
-            Accion = (TipoAccion)tipoAccionInt;
-
-            int apuesta=0;
-
-            if(Accion==TipoAccion.LLamar) 
+            if (Accion < TipoAccion.RetirarseYSeguir)
             {
-                int igualarOSubir = azar.Next(0, 2);
-                int actual = this.VerApuestaRonda();
+                int mayor = partida.MayorApuesta();
 
-                if (igualarOSubir==0)
+                int tipoAccionInt = azar.Next(1, 5);
+                TipoAccion accion = (TipoAccion)tipoAccionInt;
+
+                int apuesta = 0;
+
+                #region simula la acción de apostar
+                if (accion == TipoAccion.LLamar)
                 {
-                    //igualar
-                    apuesta = mayor-actual;    
+                    int igualarOSubir = azar.Next(0, 2);
+                    int actual = this.VerApuestaRonda();
+
+                    if (igualarOSubir == 0)
+                    {
+                        //igualar
+                        apuesta = mayor - actual;
+                    }
+                    else
+                    {
+                        //subir
+                        int subir = azar.Next(1, 10);
+                        apuesta = subir;
+                    }
                 }
-                else
-                {
-                    //subir
-                    int subir = azar.Next(1,10);
-                    apuesta = subir;
-                }
+                #endregion
+
+                Jugar(accion, apuesta);
             }
-
-            Jugar(Accion, apuesta);
         }
 
         public void RecibirCarta(Carta carta)
@@ -87,8 +94,10 @@ namespace PoquerClassLib
         public Carta VerCarta(int idx)
         {
             Carta carta = null;
-            if(idx>=0 && idx<2)
-                carta= cartas[idx];
+            if (idx >= 0 && idx < 2)
+            {
+                carta = cartas[idx];
+            }
             return carta;
         }
         public int VerApuestaRonda()
@@ -99,8 +108,10 @@ namespace PoquerClassLib
         public int VerAcumulado()
         {
             int acumulado = 0;
-            for(int n=0; n<partida.Ronda;n++)
-                acumulado+=apuestas[n];
+            for (int n = 0; n < partida.Ronda; n++)
+            {
+                acumulado += apuestas[n];
+            }
             return acumulado;
         }
     }
