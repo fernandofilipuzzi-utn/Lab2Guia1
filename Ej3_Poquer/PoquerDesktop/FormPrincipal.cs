@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
+﻿using MazoCartas;
 using PoquerClassLib;
-using System.Collections;
 using PoquerDesktop.Modelo;
-using MazoCartas;
+using System;
+using System.Collections;
+using System.Windows.Forms;
 
 namespace PoquerDesktop
 {
@@ -20,6 +12,13 @@ namespace PoquerDesktop
         Poquer nuevo;
         ArrayList partidas = new ArrayList();
 
+        PictureBox[] pbxComunitarias = new PictureBox[5];
+
+        Label[] lbNombres = new Label[3];
+        Label[] lbApuestasAcumJ = new Label[5];
+        Label[] lbAcciones = new Label[3];
+        PictureBox[,] pbxCartasJ = new PictureBox[3, 2];
+
         public FormPrincipal()
         {
             InitializeComponent();
@@ -27,10 +26,39 @@ namespace PoquerDesktop
                 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-        }
+            pbxComunitarias[0] = pbxCarta1C;
+            pbxComunitarias[1] = pbxCarta2C;
+            pbxComunitarias[2] = pbxCarta3C;
+            pbxComunitarias[3] = pbxCarta4C;
+            pbxComunitarias[4] = pbxCarta5C;
 
-        private void btnJugar_Click(object sender, EventArgs e)
-        {
+            lbNombres[0] = lbNombreJ1;
+            pbxCartasJ[0, 0] = pbxCarta1J1;
+            pbxCartasJ[0, 1] = pbxCarta2J1;
+            lbApuestasAcumJ[0] = lbApuestaAcumJ1;
+            lbAcciones[0] = lbAccionJ1;
+            lbNombreJ1.Text = "";
+            lbApuestaAcumJ1.Text = "";
+            lbAccionJ1.Text = "";
+
+            lbNombres[1] = lbNombreJ2;
+            pbxCartasJ[1, 0] = pbxCarta1J2;
+            pbxCartasJ[1, 1] = pbxCarta2J2;
+            lbApuestasAcumJ[1] = lbApuestaAcumJ2;
+            lbAcciones[1] = lbAccionJ2;
+            lbNombreJ2.Text = "";
+            lbApuestaAcumJ2.Text = "";
+            lbAccionJ2.Text = "";
+
+            lbNombres[2] = lbNombreJ3;
+            pbxCartasJ[2, 0] = pbxCarta1J3;
+            pbxCartasJ[2, 1] = pbxCarta2J3;
+            lbApuestasAcumJ[2] = lbApuestaAcumJ3;
+            lbAcciones[2] = lbAccionJ3;
+            lbNombreJ3.Text = "";
+            lbApuestaAcumJ3.Text = "";
+            lbAccionJ3.Text = "";
+            lbLLamarJ3.Text = "";
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -41,8 +69,8 @@ namespace PoquerDesktop
             {
                 string nombreHumano = fDato.tbNombre.Text;
                 int cantidadJugadores = Convert.ToInt32(fDato.nupCantidad.Value);
+                
                 nuevo = new Poquer(nombreHumano, cantidadJugadores);
-
                 nuevo.IniciarRonda();
 
                 PintarJugadores();
@@ -51,8 +79,6 @@ namespace PoquerDesktop
             plTablero.Enabled = true;
         }
         
-        
-
         private void btnListarHistorial_Click(object sender, EventArgs e)
         {
             FormHistorial fHistorial = new FormHistorial();
@@ -67,7 +93,6 @@ namespace PoquerDesktop
                 
         public void AgregarPartida(string nombre)
         {
-            //buscar el registro
             Partida buscado = null;
             for (int n = 0; n < partidas.Count && buscado == null; n++)
             {
@@ -102,10 +127,82 @@ namespace PoquerDesktop
             return partidas;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void PintarMesa()
         {
-            int apuesta = Convert.ToInt32(tbrApuestaJugador3.Value);
-            bool haVerifcado=nuevo.Jugar(Jugador.TipoAccion.LLamar, apuesta);
+            for (int n = 0; n < 5; n++)
+            {
+                int numero = 0;
+                if (n < nuevo.CantCartasComunitarias)
+                {
+                    Carta carta = nuevo.VerCartaComunicaria(n);
+                    numero = carta.Numero;
+                }
+                pbxComunitarias[n].Image = imgLstCartas.Images[numero];
+            }
+        }
+
+        private void PintarJugadores()
+        {
+            for (int n = 0; n < 3; n++)
+            {
+                if (n < nuevo.CantidadJugadores)
+                {
+                    Jugador jug = nuevo.VerJugador(n);
+
+                    lbNombres[n].Text = jug.Nombre;
+                    lbApuestasAcumJ[n].Text = jug.VerAcumulado().ToString("000");
+
+                    if (jug.Accion != Jugador.TipoAccion.Nada)
+                        lbAcciones[n].Text = jug.Accion.ToString();
+                    else
+                        lbAcciones[n].Text = "";
+
+                    for (int m = 0; m < 2; m++)
+                    {
+                        int numero = 0;
+                        if (n == 0)
+                        {
+                            Carta carta = jug.VerCarta(m);
+                            numero = carta.Numero;
+                        }
+                        pbxCartasJ[n, m].Image = imgLstCartas.Images[numero];
+                    }
+                }
+                else
+                {
+                    lbNombres[n].Text = "";
+                    lbApuestasAcumJ[n].Text = "";
+                    lbAcciones[n].Text = "";
+                }
+            }
+        }
+
+        private void btnJugar_Click(object sender, EventArgs e)
+        {
+            #region parseando acción
+            Jugador.TipoAccion accion=Jugador.TipoAccion.Nada;
+            int apuesta = 0;
+
+            if (rbLLamar.Checked)
+            {
+                accion = Jugador.TipoAccion.LLamar;
+                apuesta = Convert.ToInt32(tbrApuestaJ3.Value);
+            }
+            else if(rbPasar.Checked)
+            {
+                accion = Jugador.TipoAccion.Pasar;
+            }
+            else if(rbRetirarYSeguir.Checked)
+            {
+                accion = Jugador.TipoAccion.RetirarseYSeguir;
+            }
+            else if (rbRetirarse.Checked)
+            {
+                accion = Jugador.TipoAccion.Retirarse;
+            }
+            #endregion
+
+            bool haVerifcado = nuevo.Jugar(accion, apuesta);
 
             if (haVerifcado == false)
                 MessageBox.Show("complete la apuesta");
@@ -114,84 +211,9 @@ namespace PoquerDesktop
             PintarMesa();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void tbrApuestaJ3_ValueChanged(object sender, EventArgs e)
         {
-            nuevo.Jugar(Jugador.TipoAccion.Pasar,0);
-            PintarJugadores();
-            PintarMesa();
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            nuevo.Jugar(Jugador.TipoAccion.RetirarseYSeguir, 0);
-            PintarJugadores();
-            PintarMesa();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            nuevo.Jugar(Jugador.TipoAccion.Retirarse, 0);
-            PintarJugadores();
-            PintarMesa();
-        }
-
-        private void tbrApuestaJugador3_ValueChanged(object sender, EventArgs e)
-        {
-            lbLLamarJugador3.Text = tbrApuestaJugador3.Value.ToString();
-            PintarJugadores();
-            PintarMesa();
-        }
-
-        private void PintarMesa()
-        {
-            for (int n = 0; n < nuevo.CantCartasComunitarias; n++)
-            {
-                switch (n)
-                {
-                    case 1: btn1.ImageIndex = nuevo.VerCartaComunicaria(n).Numero + 1; break;
-                    case 2: btn1.ImageIndex = nuevo.VerCartaComunicaria(n).Numero + 1; break;
-                    case 3: btn1.ImageIndex = nuevo.VerCartaComunicaria(n).Numero + 1; break;
-                    case 4: btn1.ImageIndex = nuevo.VerCartaComunicaria(n).Numero + 1; break;
-                    case 5: btn1.ImageIndex = nuevo.VerCartaComunicaria(n).Numero + 1; break;
-                }
-            }
-        }
-
-        private void PintarJugadores()
-        {
-            for (int n = 0; n < nuevo.CantidadJugadores; n++)
-            {
-                Jugador jug = nuevo.VerJugador(n);
-
-                switch (n)
-                {
-                    case 0:
-                        {
-                            lbJugador3.Text = jug.Nombre;
-                            lbCantidad3.Text = jug.VerAcumulado().ToString();
-
-                            btn1Jugador3.ImageIndex = jug.VerCarta(0).Numero + 1;
-                            btn2Jugador3.ImageIndex = jug.VerCarta(1).Numero + 1;
-                        }
-                        break;
-                    case 1:
-                        {
-                            lbJugador1.Text = jug.Nombre;
-                            lbCantidad1.Text = jug.VerAcumulado().ToString();
-                            btn1Jugador1.ImageIndex = 0;
-                            btn2Jugador1.ImageIndex = 0;
-                        }
-                        break;
-                    case 2:
-                        {
-                            lbJugador2.Text = jug.Nombre;
-                            lbCantidad2.Text = jug.VerAcumulado().ToString();
-                            btn1Jugador2.ImageIndex = 0;
-                            btn2Jugador2.ImageIndex = 0;
-                        }
-                        break;
-                }
-            }
+            lbLLamarJ3.Text = tbrApuestaJ3.Value.ToString("000");
         }
     }
 }

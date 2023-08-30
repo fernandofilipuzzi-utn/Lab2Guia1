@@ -10,8 +10,12 @@ namespace PoquerClassLib
 {
     public class Jugador
     {
-
-        public enum TipoAccion { LLamar, Pasar, Retirarse, RetirarseYSeguir }
+        /*
+         * llamar: debe igualar o aumentar.
+         * pasar: check - todos deben pasar para continuar.
+         * 
+         */
+        public enum TipoAccion { Nada, LLamar, Pasar, Retirarse, RetirarseYSeguir }
         public string Nombre { get; private set; }
 
         int[] apuestas = new int[3];
@@ -28,6 +32,7 @@ namespace PoquerClassLib
         {
             Nombre = nombre;
             this.partida = partida;
+            Accion = TipoAccion.Nada;
         }
 
         public void Jugar(TipoAccion accion, int fichas)
@@ -43,13 +48,30 @@ namespace PoquerClassLib
 
         public void Jugar()
         {
-            //
+            int mayor = partida.MayorApuesta();
+
             int tipoAccionInt=azar.Next(0, 4);
             Accion = (TipoAccion)tipoAccionInt;
 
-            int apuesta = 0;
-            if (Accion == TipoAccion.LLamar)
-                apuesta = azar.Next(1,100);
+            int apuesta=0;
+
+            if(Accion==TipoAccion.LLamar) 
+            {
+                int igualarOSubir = azar.Next(0, 2);
+                int actual = this.VerApuestaRonda();
+
+                if (igualarOSubir==0)
+                {
+                    //igualar
+                    apuesta = mayor-actual;    
+                }
+                else
+                {
+                    //subir
+                    int subir = azar.Next(1,10);
+                    apuesta = subir;
+                }
+            }
 
             Jugar(Accion, apuesta);
         }

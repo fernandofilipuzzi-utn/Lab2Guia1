@@ -72,61 +72,53 @@ namespace PoquerClassLib
         {
             ((Jugador)jugadores[0]).Jugar(accion, fichas);
 
-            //simula los otros jugadores
             for (int n=1; n<CantidadJugadores;n++)
             {
                 ((Jugador)jugadores[n]).Jugar();
             }
 
-            //busca que todos los jugadores jueguen hasta que igualen al humano o 
-            //empaten o se retiren
-            bool incluyeHumano = false;
-            Jugador[] aSolicitar = this.VerificarApuestas();
-            do
+            #region el crupier verifica el ok de todas las apuestas
+            bool ok = VerificarApuestas();
+            #endregion
+
+            if (ok == true)
             {
-                foreach (Jugador jug in aSolicitar)
-                {
-                    if (jug != jugadores[0])
-                        jug.Jugar();
-                }
-                aSolicitar = this.VerificarApuestas();
-
-                foreach (Jugador jug in aSolicitar)
-                {
-                    if (jug == jugadores[0])
-                        incluyeHumano = true;
-                }
-            } while (incluyeHumano == true && aSolicitar.Length > 1 ||
-                    incluyeHumano == false && aSolicitar.Length > 0);
-
-            return incluyeHumano;
-        }
-
-        /// <summary>
-        /// verifica que todas las apuestas esten completas.
-        /// </summary>
-        /// <returns></returns>
-        public Jugador[] VerificarApuestas()
-        {
-            Jugador [] aSolicitar=new Jugador[0];
-
-            //buscar mayor apuesta., dentro de los que están apostando
-            Jugador mayor =null;
-            for (int n = 0; n < CantidadJugadores; n++)
-            {
-                Jugador jug = (Jugador)jugadores[n];
-                if (jug.Accion == Jugador.TipoAccion.LLamar)
-                {
-                    int apuesta = jug.VerApuestaRonda();
-
-                    if (mayor == null || mayor.VerApuestaRonda()<apuesta)
-                        mayor = (Jugador)(jugadores[n]);
-                }
+                IniciarRonda();
             }
 
-            return aSolicitar;
+            return ok;
         }
 
+        public bool VerificarApuestas()
+        {
+            int maxima = MayorApuesta();
+
+            bool todosPasan = true;
+            bool hanIgualado = true;
+            int queHanApostado = 0;
+            for (int n=0; n<CantidadJugadores && (todosPasan||hanIgualado); n++)
+            {
+                Jugador jug = (Jugador)jugadores[n];
+                if (jug.Accion < Jugador.TipoAccion.Retirarse)
+                {
+                    //check!
+                    todosPasan &= jug.Accion == Jugador.TipoAccion.Pasar;
+
+                    //bet! - en tal caso, verifica que todos igualen
+                    hanIgualado &= jug.Accion == Jugador.TipoAccion.LLamar && jug.VerApuestaRonda() == maxima;
+                }
+
+                if (jug.Accion == Jugador.TipoAccion.LLamar)
+                    queHanApostado++;
+            }
+
+            /*
+             todos pasan (check)? o
+             todos han igualado? o
+             o queda uno que ha apostado
+             */
+            return todosPasan || hanIgualado || queHanApostado==1;
+        }
 
         public Carta VerCartaComunicaria(int idx)
         {
@@ -136,6 +128,18 @@ namespace PoquerClassLib
         public Jugador VerJugador(int nro)
         {
             return (Jugador)(jugadores[nro]);
+        }
+
+        public int MayorApuesta()
+        {
+            int mayor = VerJugador(0).VerApuestaRonda();
+            for (int n = 1; n < CantidadJugadores; n++)
+            {
+                int apuesta = VerJugador(n).VerApuestaRonda();
+                if (mayor < apuesta)
+                    mayor = apuesta;
+            }
+            return mayor;
         }
     }
 }
