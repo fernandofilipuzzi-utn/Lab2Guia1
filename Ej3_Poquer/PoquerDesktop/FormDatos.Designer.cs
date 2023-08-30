@@ -118,6 +118,7 @@ namespace PoquerDesktop
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tbNombre);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormDatos";
             this.Text = "Juego Nuevo";
             ((System.ComponentModel.ISupportInitialize)(this.nupCantidad)).EndInit();

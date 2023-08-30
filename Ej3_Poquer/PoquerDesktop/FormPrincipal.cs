@@ -82,6 +82,7 @@ namespace PoquerDesktop
 
             plTablero.Enabled = true;
             btnJugar.Enabled = true;
+            gbPanelJugador.Enabled = true;
         }
         
         private void btnListarHistorial_Click(object sender, EventArgs e)
@@ -221,7 +222,7 @@ namespace PoquerDesktop
 
                 if (nuevo.FinDelJugo == true)
                 {
-                    btnJugar.Enabled = false;
+                    gbPanelJugador.Enabled = false;
                     MessageBox.Show("fin!");
                 }
 

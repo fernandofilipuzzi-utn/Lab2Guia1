@@ -84,7 +84,7 @@ namespace PoquerClassLib
                 cartas[CantCartasComunitarias++] = mazo.Extraer();
 
                 //sigue ver las manos
-                Ronda = 4;
+                //Ronda = 4;
 
                 #endregion
             }

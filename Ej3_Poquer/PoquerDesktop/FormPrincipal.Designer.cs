@@ -58,7 +58,7 @@ namespace PoquerDesktop
             this.btnVerHistorial = new System.Windows.Forms.Button();
             this.tbrApuestaJ3 = new System.Windows.Forms.TrackBar();
             this.lbLLamarJ3 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gbPanelJugador = new System.Windows.Forms.GroupBox();
             this.rbRetirarse = new System.Windows.Forms.RadioButton();
             this.rbLLamar = new System.Windows.Forms.RadioButton();
             this.btnJugar = new System.Windows.Forms.Button();
@@ -78,7 +78,7 @@ namespace PoquerDesktop
             ((System.ComponentModel.ISupportInitialize)(this.pbxCarta2C)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCarta1C)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbrApuestaJ3)).BeginInit();
-            this.groupBox3.SuspendLayout();
+            this.gbPanelJugador.SuspendLayout();
             this.SuspendLayout();
             // 
             // imgLstCartas
@@ -406,21 +406,22 @@ namespace PoquerDesktop
             this.lbLLamarJ3.TabIndex = 19;
             this.lbLLamarJ3.Text = "lbLLamarJ3";
             // 
-            // groupBox3
+            // gbPanelJugador
             // 
-            this.groupBox3.Controls.Add(this.rbRetirarse);
-            this.groupBox3.Controls.Add(this.rbLLamar);
-            this.groupBox3.Controls.Add(this.tbrApuestaJ3);
-            this.groupBox3.Controls.Add(this.lbLLamarJ3);
-            this.groupBox3.Controls.Add(this.btnJugar);
-            this.groupBox3.Controls.Add(this.rbRetirarYSeguir);
-            this.groupBox3.Controls.Add(this.rbPasar);
-            this.groupBox3.Location = new System.Drawing.Point(632, 116);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(263, 216);
-            this.groupBox3.TabIndex = 20;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Panel de control Jugado3";
+            this.gbPanelJugador.Controls.Add(this.rbRetirarse);
+            this.gbPanelJugador.Controls.Add(this.rbLLamar);
+            this.gbPanelJugador.Controls.Add(this.tbrApuestaJ3);
+            this.gbPanelJugador.Controls.Add(this.lbLLamarJ3);
+            this.gbPanelJugador.Controls.Add(this.btnJugar);
+            this.gbPanelJugador.Controls.Add(this.rbRetirarYSeguir);
+            this.gbPanelJugador.Controls.Add(this.rbPasar);
+            this.gbPanelJugador.Enabled = false;
+            this.gbPanelJugador.Location = new System.Drawing.Point(632, 116);
+            this.gbPanelJugador.Name = "gbPanelJugador";
+            this.gbPanelJugador.Size = new System.Drawing.Size(263, 216);
+            this.gbPanelJugador.TabIndex = 20;
+            this.gbPanelJugador.TabStop = false;
+            this.gbPanelJugador.Text = "Panel de control Jugado3";
             // 
             // rbRetirarse
             // 
@@ -484,8 +485,8 @@ namespace PoquerDesktop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(907, 525);
-            this.Controls.Add(this.groupBox3);
+            this.ClientSize = new System.Drawing.Size(901, 525);
+            this.Controls.Add(this.gbPanelJugador);
             this.Controls.Add(this.btnVerHistorial);
             this.Controls.Add(this.plTablero);
             this.Controls.Add(this.btnNuevo);
@@ -508,8 +509,8 @@ namespace PoquerDesktop
             ((System.ComponentModel.ISupportInitialize)(this.pbxCarta2C)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCarta1C)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbrApuestaJ3)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.gbPanelJugador.ResumeLayout(false);
+            this.gbPanelJugador.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -527,7 +528,7 @@ namespace PoquerDesktop
         private System.Windows.Forms.Label lbNombreJ2;
         private System.Windows.Forms.Label lbNombreJ1;
         private System.Windows.Forms.TrackBar tbrApuestaJ3;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gbPanelJugador;
         private System.Windows.Forms.Label lbLLamarJ3;
         private System.Windows.Forms.PictureBox pbxCarta1C;
         private System.Windows.Forms.PictureBox pbxCarta5C;

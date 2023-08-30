@@ -108,7 +108,7 @@ namespace PoquerClassLib
         public int VerAcumulado()
         {
             int acumulado = 0;
-            for (int n = 0; n < partida.Ronda; n++)
+            for (int n = 0; n < partida.Ronda && n < 3; n++)
             {
                 acumulado += apuestas[n];
             }
