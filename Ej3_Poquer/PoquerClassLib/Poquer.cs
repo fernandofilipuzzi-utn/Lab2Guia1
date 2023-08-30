@@ -36,7 +36,7 @@ namespace PoquerClassLib
             }
         }
 
-        public void IniciarRonda()
+        public void IniciarRondaApuestas()
         {
             if (Ronda == 0)
             {
@@ -68,56 +68,83 @@ namespace PoquerClassLib
             }
         }
 
-        public bool Jugar(Jugador.TipoAccion accion,int fichas)
+        public void Jugar(Jugador.TipoAccion accion,int fichas)
         {
-            ((Jugador)jugadores[0]).Jugar(accion, fichas);
-
-            for (int n=1; n<CantidadJugadores;n++)
+            if (FinDelJugo==false)
             {
-                ((Jugador)jugadores[n]).Jugar();
+                #region apuestan los jugadores
+                ((Jugador)jugadores[0]).Jugar(accion, fichas);
+                for (int n = 1; n < CantidadJugadores; n++)
+                {
+                    ((Jugador)jugadores[n]).Jugar();
+                }
+                #endregion
+
+                #region el crupier verifica el ok de todas las apuestas
+                VerificarApuestas();
+                if (CompletoRonda == true)
+                {
+                    VerificarFinDelJuego();
+                    if(FinDelJugo==false)
+                        IniciarRondaApuestas();
+                }
+                #endregion
             }
-
-            #region el crupier verifica el ok de todas las apuestas
-            bool ok = VerificarApuestas();
-            #endregion
-
-            if (ok == true)
-            {
-                IniciarRonda();
-            }
-
-            return ok;
         }
 
-        public bool VerificarApuestas()
+
+        /// <summary>
+        /// verifico que las apuestas esten bien
+        /// </summary>
+        public bool CompletoRonda { get; set; } = false;
+        private void VerificarApuestas()
         {
             int maxima = MayorApuesta();
 
             bool todosPasan = true;
             bool hanIgualado = true;
-            int queHanApostado = 0;
             for (int n=0; n<CantidadJugadores && (todosPasan||hanIgualado); n++)
             {
                 Jugador jug = (Jugador)jugadores[n];
                 if (jug.Accion < Jugador.TipoAccion.Retirarse)
                 {
-                    //check!
+                    //si todos check check?
                     todosPasan &= jug.Accion == Jugador.TipoAccion.Pasar;
 
-                    //bet! - en tal caso, verifica que todos igualen
-                    hanIgualado &= jug.Accion == Jugador.TipoAccion.LLamar && jug.VerApuestaRonda() == maxima;
+                    //que si apostaron hayan igualado
+                    hanIgualado &= (jug.Accion == Jugador.TipoAccion.LLamar && jug.VerApuestaRonda() == maxima) ||
+                                    jug.Accion > Jugador.TipoAccion.LLamar; //igualaron o otra cosa
                 }
+            }
 
-                if (jug.Accion == Jugador.TipoAccion.LLamar)
-                    queHanApostado++;
+            /* 
+                de los que no se han retirado:
+                todos pasan (check)? o
+                todos han igualado? 
+             */
+            CompletoRonda=todosPasan || hanIgualado;
+        }
+
+        public bool FinDelJugo { get; private set; } = false;
+        private void VerificarFinDelJuego()
+        {
+            bool fin = false;
+
+            int queNoSeRetiren=0;
+            for (int n = 0; n < CantidadJugadores; n++)
+            {
+                Jugador jug = (Jugador)jugadores[n];
+                
+                if (jug.Accion == Jugador.TipoAccion.RetirarseYSeguir)
+                    queNoSeRetiren++;
             }
 
             /*
-             todos pasan (check)? o
-             todos han igualado? o
-             o queda uno que ha apostado
+                queda un solo jugador - o apostando, o pasan y siguen , o checan
              */
-            return todosPasan || hanIgualado || queHanApostado==1;
+            fin|= queNoSeRetiren == CantidadJugadores-1;
+
+            FinDelJugo = fin;
         }
 
         public Carta VerCartaComunicaria(int idx)

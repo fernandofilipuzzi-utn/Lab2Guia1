@@ -37,6 +37,7 @@ namespace PoquerDesktop
             pbxCartasJ[0, 1] = pbxCarta2J1;
             lbApuestasAcumJ[0] = lbApuestaAcumJ1;
             lbAcciones[0] = lbAccionJ1;
+
             lbNombreJ1.Text = "";
             lbApuestaAcumJ1.Text = "";
             lbAccionJ1.Text = "";
@@ -46,6 +47,7 @@ namespace PoquerDesktop
             pbxCartasJ[1, 1] = pbxCarta2J2;
             lbApuestasAcumJ[1] = lbApuestaAcumJ2;
             lbAcciones[1] = lbAccionJ2;
+
             lbNombreJ2.Text = "";
             lbApuestaAcumJ2.Text = "";
             lbAccionJ2.Text = "";
@@ -55,6 +57,7 @@ namespace PoquerDesktop
             pbxCartasJ[2, 1] = pbxCarta2J3;
             lbApuestasAcumJ[2] = lbApuestaAcumJ3;
             lbAcciones[2] = lbAccionJ3;
+
             lbNombreJ3.Text = "";
             lbApuestaAcumJ3.Text = "";
             lbAccionJ3.Text = "";
@@ -71,12 +74,14 @@ namespace PoquerDesktop
                 int cantidadJugadores = Convert.ToInt32(fDato.nupCantidad.Value);
                 
                 nuevo = new Poquer(nombreHumano, cantidadJugadores);
-                nuevo.IniciarRonda();
+                nuevo.IniciarRondaApuestas();
 
                 PintarJugadores();
                 PintarMesa();
             }
+
             plTablero.Enabled = true;
+            btnJugar.Enabled = true;
         }
         
         private void btnListarHistorial_Click(object sender, EventArgs e)
@@ -152,21 +157,26 @@ namespace PoquerDesktop
                     lbNombres[n].Text = jug.Nombre;
                     lbApuestasAcumJ[n].Text = jug.VerAcumulado().ToString("000");
 
-                    if (jug.Accion != Jugador.TipoAccion.Nada)
+                    if (jug.Accion > Jugador.TipoAccion.Nada)
                         lbAcciones[n].Text = jug.Accion.ToString();
                     else
                         lbAcciones[n].Text = "";
 
+                    #region pintar cartas
                     for (int m = 0; m < 2; m++)
                     {
                         int numero = 0;
+
+                        #region pinta las cartas solo del jugador humano
                         if (n == 0)
                         {
                             Carta carta = jug.VerCarta(m);
                             numero = carta.Numero;
                         }
+                        #endregion
                         pbxCartasJ[n, m].Image = imgLstCartas.Images[numero];
                     }
+                    #endregion
                 }
                 else
                 {
@@ -202,10 +212,16 @@ namespace PoquerDesktop
             }
             #endregion
 
-            bool haVerifcado = nuevo.Jugar(accion, apuesta);
+            nuevo.Jugar(accion, apuesta);
 
-            if (haVerifcado == false)
+            if (nuevo.CompletoRonda == false)
                 MessageBox.Show("complete la apuesta");
+
+            if (nuevo.FinDelJugo == true)
+            {
+                btnJugar.Enabled = false;
+                MessageBox.Show("fin!");
+            }
 
             PintarJugadores();
             PintarMesa();
@@ -214,6 +230,35 @@ namespace PoquerDesktop
         private void tbrApuestaJ3_ValueChanged(object sender, EventArgs e)
         {
             lbLLamarJ3.Text = tbrApuestaJ3.Value.ToString("000");
+        }
+
+        private void pbxCartaC_MouseMove(object sender, MouseEventArgs e)
+        {
+            int numero = -1;
+
+            var img=sender as PictureBox;
+
+            if (img == pbxCarta1C) numero = 0;
+            else if (img == pbxCarta2C) numero = 1;
+            else if (img == pbxCarta3C) numero = 2;
+            else if (img == pbxCarta4C) numero = 3;
+            else if (img == pbxCarta5C) numero = 4;
+
+            Carta carta = nuevo.VerCartaComunicaria(numero);
+            if (carta!= null && numero >= 0)
+                toolTip1.SetToolTip(img, carta.ToString());
+        }
+
+        private void pbxCartaJ1_MouseMove(object sender, MouseEventArgs e)
+        {
+            int numero = -1;
+            var img = sender as PictureBox;
+            if (img == pbxCarta1J1) numero = 0;
+            else if (img == pbxCarta2J1) numero = 1;
+
+            Carta carta = nuevo.VerJugador(0).VerCarta(numero);
+            if (carta != null && numero>= 0)
+                toolTip1.SetToolTip(img, carta.ToString());
         }
     }
 }

@@ -27,7 +27,9 @@ namespace PoquerClassLib
         Poquer partida;
 
         static Random azar = new Random();
+
         
+
         public Jugador(Poquer partida, string nombre) 
         {
             Nombre = nombre;
@@ -50,7 +52,7 @@ namespace PoquerClassLib
         {
             int mayor = partida.MayorApuesta();
 
-            int tipoAccionInt=azar.Next(0, 4);
+            int tipoAccionInt=azar.Next(1, 5);
             Accion = (TipoAccion)tipoAccionInt;
 
             int apuesta=0;
@@ -84,7 +86,10 @@ namespace PoquerClassLib
 
         public Carta VerCarta(int idx)
         {
-            return cartas[idx];
+            Carta carta = null;
+            if(idx>=0 && idx<2)
+                carta= cartas[idx];
+            return carta;
         }
         public int VerApuestaRonda()
         {

@@ -64,6 +64,7 @@ namespace PoquerDesktop
             this.btnJugar = new System.Windows.Forms.Button();
             this.rbRetirarYSeguir = new System.Windows.Forms.RadioButton();
             this.rbPasar = new System.Windows.Forms.RadioButton();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.plTablero.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCarta1J3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCarta2J3)).BeginInit();
@@ -111,32 +112,31 @@ namespace PoquerDesktop
             this.imgLstCartas.Images.SetKeyName(24, "D11J.png");
             this.imgLstCartas.Images.SetKeyName(25, "D12K.png");
             this.imgLstCartas.Images.SetKeyName(26, "D13Q.png");
-            this.imgLstCartas.Images.SetKeyName(27, "J.png");
-            this.imgLstCartas.Images.SetKeyName(28, "P1A.png");
-            this.imgLstCartas.Images.SetKeyName(29, "P2.png");
-            this.imgLstCartas.Images.SetKeyName(30, "P3.png");
-            this.imgLstCartas.Images.SetKeyName(31, "P4.png");
-            this.imgLstCartas.Images.SetKeyName(32, "P5.png");
-            this.imgLstCartas.Images.SetKeyName(33, "P6.png");
-            this.imgLstCartas.Images.SetKeyName(34, "P7.png");
-            this.imgLstCartas.Images.SetKeyName(35, "P9.png");
-            this.imgLstCartas.Images.SetKeyName(36, "P10.png");
-            this.imgLstCartas.Images.SetKeyName(37, "P11J.png");
-            this.imgLstCartas.Images.SetKeyName(38, "P12Q.png");
-            this.imgLstCartas.Images.SetKeyName(39, "P13K.png");
-            this.imgLstCartas.Images.SetKeyName(40, "T1A.png");
-            this.imgLstCartas.Images.SetKeyName(41, "T2.png");
-            this.imgLstCartas.Images.SetKeyName(42, "T3.png");
-            this.imgLstCartas.Images.SetKeyName(43, "T4.png");
-            this.imgLstCartas.Images.SetKeyName(44, "T5.png");
-            this.imgLstCartas.Images.SetKeyName(45, "T6.png");
-            this.imgLstCartas.Images.SetKeyName(46, "T7.png");
-            this.imgLstCartas.Images.SetKeyName(47, "T8.png");
-            this.imgLstCartas.Images.SetKeyName(48, "T9.png");
-            this.imgLstCartas.Images.SetKeyName(49, "T10.png");
-            this.imgLstCartas.Images.SetKeyName(50, "T11J.png");
-            this.imgLstCartas.Images.SetKeyName(51, "T12Q.png");
-            this.imgLstCartas.Images.SetKeyName(52, "T13K.png");
+            this.imgLstCartas.Images.SetKeyName(27, "P1A.png");
+            this.imgLstCartas.Images.SetKeyName(28, "P2.png");
+            this.imgLstCartas.Images.SetKeyName(29, "P3.png");
+            this.imgLstCartas.Images.SetKeyName(30, "P4.png");
+            this.imgLstCartas.Images.SetKeyName(31, "P5.png");
+            this.imgLstCartas.Images.SetKeyName(32, "P6.png");
+            this.imgLstCartas.Images.SetKeyName(33, "P7.png");
+            this.imgLstCartas.Images.SetKeyName(34, "P9.png");
+            this.imgLstCartas.Images.SetKeyName(35, "P10.png");
+            this.imgLstCartas.Images.SetKeyName(36, "P11J.png");
+            this.imgLstCartas.Images.SetKeyName(37, "P12Q.png");
+            this.imgLstCartas.Images.SetKeyName(38, "P13K.png");
+            this.imgLstCartas.Images.SetKeyName(39, "T1A.png");
+            this.imgLstCartas.Images.SetKeyName(40, "T2.png");
+            this.imgLstCartas.Images.SetKeyName(41, "T3.png");
+            this.imgLstCartas.Images.SetKeyName(42, "T4.png");
+            this.imgLstCartas.Images.SetKeyName(43, "T5.png");
+            this.imgLstCartas.Images.SetKeyName(44, "T6.png");
+            this.imgLstCartas.Images.SetKeyName(45, "T7.png");
+            this.imgLstCartas.Images.SetKeyName(46, "T8.png");
+            this.imgLstCartas.Images.SetKeyName(47, "T9.png");
+            this.imgLstCartas.Images.SetKeyName(48, "T10.png");
+            this.imgLstCartas.Images.SetKeyName(49, "T11J.png");
+            this.imgLstCartas.Images.SetKeyName(50, "T12Q.png");
+            this.imgLstCartas.Images.SetKeyName(51, "T13K.png");
             // 
             // btnNuevo
             // 
@@ -246,6 +246,7 @@ namespace PoquerDesktop
             this.pbxCarta2J1.Size = new System.Drawing.Size(72, 108);
             this.pbxCarta2J1.TabIndex = 25;
             this.pbxCarta2J1.TabStop = false;
+            this.pbxCarta2J1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbxCartaJ1_MouseMove);
             // 
             // pbxCarta1J1
             // 
@@ -254,6 +255,7 @@ namespace PoquerDesktop
             this.pbxCarta1J1.Size = new System.Drawing.Size(72, 108);
             this.pbxCarta1J1.TabIndex = 24;
             this.pbxCarta1J1.TabStop = false;
+            this.pbxCarta1J1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbxCartaJ1_MouseMove);
             // 
             // pbxCarta5C
             // 
@@ -262,6 +264,7 @@ namespace PoquerDesktop
             this.pbxCarta5C.Size = new System.Drawing.Size(72, 108);
             this.pbxCarta5C.TabIndex = 23;
             this.pbxCarta5C.TabStop = false;
+            this.pbxCarta5C.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbxCartaC_MouseMove);
             // 
             // pbxCarta4C
             // 
@@ -270,6 +273,7 @@ namespace PoquerDesktop
             this.pbxCarta4C.Size = new System.Drawing.Size(72, 108);
             this.pbxCarta4C.TabIndex = 22;
             this.pbxCarta4C.TabStop = false;
+            this.pbxCarta4C.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbxCartaC_MouseMove);
             // 
             // pbxCarta3C
             // 
@@ -278,6 +282,7 @@ namespace PoquerDesktop
             this.pbxCarta3C.Size = new System.Drawing.Size(72, 108);
             this.pbxCarta3C.TabIndex = 21;
             this.pbxCarta3C.TabStop = false;
+            this.pbxCarta3C.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbxCartaC_MouseMove);
             // 
             // pbxCarta2C
             // 
@@ -286,6 +291,7 @@ namespace PoquerDesktop
             this.pbxCarta2C.Size = new System.Drawing.Size(72, 108);
             this.pbxCarta2C.TabIndex = 20;
             this.pbxCarta2C.TabStop = false;
+            this.pbxCarta2C.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbxCartaC_MouseMove);
             // 
             // pbxCarta1C
             // 
@@ -294,6 +300,7 @@ namespace PoquerDesktop
             this.pbxCarta1C.Size = new System.Drawing.Size(72, 108);
             this.pbxCarta1C.TabIndex = 19;
             this.pbxCarta1C.TabStop = false;
+            this.pbxCarta1C.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbxCartaC_MouseMove);
             // 
             // lbApuestaAcumJ3
             // 
@@ -464,6 +471,10 @@ namespace PoquerDesktop
             this.rbPasar.Text = "Pasar(Check)";
             this.rbPasar.UseVisualStyleBackColor = true;
             // 
+            // toolTip1
+            // 
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -532,6 +543,7 @@ namespace PoquerDesktop
         private System.Windows.Forms.Label lbAccionJ3;
         private System.Windows.Forms.Label lbAccionJ2;
         private System.Windows.Forms.Label lbAccionJ1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
