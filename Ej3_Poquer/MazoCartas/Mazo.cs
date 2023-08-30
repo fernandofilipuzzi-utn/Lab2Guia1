@@ -13,6 +13,8 @@ namespace MazoCartas
         public Carta[] cartas = new Carta[52];
         int cantidad = 52;
 
+        public const int Reverso=51;
+
         static Random azar = new Random();
         public Mazo()
         {

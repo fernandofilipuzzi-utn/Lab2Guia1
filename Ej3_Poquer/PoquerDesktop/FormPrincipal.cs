@@ -136,7 +136,7 @@ namespace PoquerDesktop
         {
             for (int n = 0; n < 5; n++)
             {
-                int numero = 0;
+                int numero = Mazo.Reverso;
                 if (n < nuevo.CantCartasComunitarias)
                 {
                     Carta carta = nuevo.VerCartaComunicaria(n);
@@ -165,7 +165,7 @@ namespace PoquerDesktop
                     #region pintar cartas
                     for (int m = 0; m < 2; m++)
                     {
-                        int numero = 0;
+                        int numero = Mazo.Reverso;
 
                         #region pinta las cartas solo del jugador humano
                         if (n == 0)
