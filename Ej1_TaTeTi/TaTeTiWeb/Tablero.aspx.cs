@@ -62,10 +62,19 @@ namespace TaTeTiWeb
             {
                 btnMatrix[sistema.Juego.Jugador1.UltimaFila,
                           sistema.Juego.Jugador1.UltimaColumna].Style["background-image"] = "url('./Resources/O.png')";
+                btnMatrix[sistema.Juego.Jugador1.UltimaFila,
+                            sistema.Juego.Jugador1.UltimaColumna].Style["background-size"] = "cover";
+                btnMatrix[sistema.Juego.Jugador1.UltimaFila,
+                            sistema.Juego.Jugador1.UltimaColumna].Style["background-position"] = "center";
 
                 while (sistema.Juego.Jugador2.Jugar() == false) ;
+
                 btnMatrix[sistema.Juego.Jugador2.UltimaFila,
                            sistema.Juego.Jugador2.UltimaColumna].Style["background-image"] = "url('./Resources/X.png')";
+                btnMatrix[sistema.Juego.Jugador2.UltimaFila,
+                            sistema.Juego.Jugador2.UltimaColumna].Style["background-size"] = "cover";
+                btnMatrix[sistema.Juego.Jugador2.UltimaFila,
+                            sistema.Juego.Jugador2.UltimaColumna].Style["background-position"] = "center";
             }
             else
             {

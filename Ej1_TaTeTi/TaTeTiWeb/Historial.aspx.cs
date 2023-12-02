@@ -4,8 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-using TaTeTiClassLib;
 using TaTeTiWeb.Modelo;
 
 namespace TaTeTiWeb
