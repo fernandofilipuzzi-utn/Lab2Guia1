@@ -10,9 +10,11 @@
 ## Online
 
 
-<div align="center">
-  <img src="Ej1_TaTeTi/TaTeTiWeb/docs/qr.jpg" style="width:30%"/>
+<div align="center" style="100%">
+  <img src="Ej1_TaTeTi/TaTeTiWeb/docs/qr.jpg" style="width:20%;"/>
+   <div align="center">
   [Ta-Te-Ti Online](http://www.fernandofilipuzziutn.somee.com/)
+   </div>
 </div>
 
 
