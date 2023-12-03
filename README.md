@@ -9,7 +9,12 @@
  
 ## Online
 
-[Ta-Te-Ti Online](http://www.fernandofilipuzziutn.somee.com/)
+
+<div class="text-center" style="align-items: center;">
+  <img src="Ej1_TaTeTi/TaTeTiWeb/docs/qr.jpg" style="width:30%"/>
+  [Ta-Te-Ti Online](http://www.fernandofilipuzziutn.somee.com/)
+</div>
+
 
 ## TaTeTi
 <br/>
