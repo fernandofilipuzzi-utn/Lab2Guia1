@@ -11,7 +11,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div style="min-width: 361px;">
         <h1>Mobile Master Page</h1>
         <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
         <section class="content-wrapper main-content clear-fix">

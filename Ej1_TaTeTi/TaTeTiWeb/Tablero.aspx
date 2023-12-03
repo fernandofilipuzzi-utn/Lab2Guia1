@@ -38,7 +38,7 @@
     <div class="container">
         <div class="row">
             <div class="col" style="text-align: center;">
-                <asp:Button ID="btnNuevo" Text="Nuevo" runat="server" OnClick="btnNuevo_Click" />
+                <asp:Button ID="btnNuevo" CssClass="btn btn-primary" Text="Nuevo Juego" runat="server" OnClick="btnNuevo_Click" />
                 <!--
                 <asp:Button ID="btnVerHistorial" Text="Historial" runat="server" OnClick="btnVerHistorial_Click"/>
                 -->
